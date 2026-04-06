@@ -1,0 +1,35 @@
+import java.util.ArrayList;
+
+class OnlineCourse extends Course implements Enroll, Trackable {
+    private String platform;
+    private ArrayList<String> students = new ArrayList<>();
+    private DiscountStrategy discount;
+
+    public OnlineCourse(String id, String title, int duration, double baseFee, String platform, DiscountStrategy discount) {
+        super(id, title, duration, baseFee);
+        this.platform = platform;
+        this.discount = discount;
+    }
+
+    public double calculateFee() {
+        double fee = getDuration() * 5;
+        if (getDuration() > 20) {
+            fee = discount.applyDiscount(fee);
+        }
+        return fee;
+    }
+
+    public void enrollStudent(String name) {
+        students.add(name);
+        System.out.println(name + " enrolled in online course");
+    }
+
+    public void enrollStudent(String name, String email) {
+        students.add(name);
+        System.out.println(name + " enrolled with email: " + email);
+    }
+
+    public void trackProgress(String studentName, int progress) {
+        System.out.println(studentName + " progress: " + progress + "%");
+    }
+}
