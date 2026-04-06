@@ -1,0 +1,28 @@
+abstract class Course {
+    private String courseId;
+    private String title;
+    private int duration;
+    private double baseFee;
+
+    public Course(String courseId, String title, int duration, double baseFee) {
+        this.courseId = courseId;
+        this.title = title;
+        this.duration = duration;
+        this.baseFee = baseFee;
+    }
+
+    public String getCourseId() { return courseId; }
+    public String getTitle() { return title; }
+    public int getDuration() { return duration; }
+    public double getBaseFee() { return baseFee; }
+
+    public void setTitle(String title) { this.title = title; }
+    public void setDuration(int duration) { this.duration = duration; }
+    public void setBaseFee(double baseFee) { this.baseFee = baseFee; }
+
+    public abstract double calculateFee();
+
+    public void displayCourseDetails() {
+        System.out.println(courseId + " - " + title + " (" + duration + " hrs)");
+    }
+}
