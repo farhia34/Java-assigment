@@ -1,0 +1,32 @@
+public class ELearningSystem {
+    public static void main(String[] args) {
+        try {
+            DiscountStrategy discount = new SimpleDiscount();
+
+            Course c1 = new OnlineCourse("C1", "Java Basics", 25, 100, "Zoom", discount);
+            Course c2 = new OfflineCourse("C2", "Networking", 15, 200, "Mogadishu", 50);
+
+            Student s1 = new Student("S1", "Ali");
+            Student s2 = new Student("S2", "Sara");
+
+            s1.enroll(c1);
+            s2.enroll(c2);
+
+            ((Enroll)c1).enrollStudent("Ali");
+            ((Enroll)c2).enrollStudent("Sara", "sara@mail.com");
+
+            ((Trackable)c1).trackProgress("Ali", 60);
+            ((Schedulable)c2).scheduleClass("10-Apr", "10:00 AM");
+            ((Certifiable)c2).issueCertificate("Sara");
+
+            c1.displayCourseDetails();
+            c2.displayCourseDetails();
+
+            System.out.println("Fee Online: " + c1.calculateFee());
+            System.out.println("Fee Offline: " + c2.calculateFee());
+
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+}
